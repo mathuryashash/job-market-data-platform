@@ -1,0 +1,12 @@
+version: 2
+
+seeds:
+  - name: postings_fixture
+    description: "Fixture data for dbt tests (not for production use)"
+    config:
+      column_types:
+        is_remote: boolean
+        skill_count: integer
+        posted_at: date
+        updated_at: date
+        silver_date: date

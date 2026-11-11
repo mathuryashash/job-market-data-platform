@@ -1,0 +1,34 @@
+{
+  "jobs": [
+    {
+      "id": 4567890,
+      "title": "Data Engineer",
+      "location": {"name": "Remote"},
+      "departments": [{"name": "Engineering"}],
+      "first_published": "2024-01-10T08:00:00.000Z",
+      "updated_at": "2024-01-12T10:00:00.000Z",
+      "absolute_url": "https://boards.greenhouse.io/databricks/jobs/4567890",
+      "content": "We are looking for a Data Engineer with experience in Apache Spark, Python, SQL and Kafka."
+    },
+    {
+      "id": 4567891,
+      "title": "Senior Machine Learning Engineer",
+      "location": {"name": "San Francisco, CA"},
+      "departments": [{"name": "ML Platform"}],
+      "first_published": "2024-01-09T08:00:00.000Z",
+      "updated_at": "2024-01-11T10:00:00.000Z",
+      "absolute_url": "https://boards.greenhouse.io/databricks/jobs/4567891",
+      "content": "PyTorch, TensorFlow, Python required. AWS experience a plus."
+    },
+    {
+      "id": 4567892,
+      "title": "Software Engineering Intern",
+      "location": {"name": "Bengaluru, India"},
+      "departments": [{"name": "Engineering"}],
+      "first_published": "2024-01-08T08:00:00.000Z",
+      "updated_at": "2024-01-10T10:00:00.000Z",
+      "absolute_url": "https://boards.greenhouse.io/databricks/jobs/4567892",
+      "content": "Internship opportunity in Bangalore. Java or Python experience."
+    }
+  ]
+}

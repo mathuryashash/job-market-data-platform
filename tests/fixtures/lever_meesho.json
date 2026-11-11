@@ -1,0 +1,30 @@
+[
+  {
+    "id": "abc123-def456",
+    "text": "Backend Engineer",
+    "hostedUrl": "https://jobs.lever.co/meesho/abc123-def456",
+    "createdAt": 1704844800000,
+    "updatedAt": 1705017600000,
+    "workplaceType": "on-site",
+    "categories": {
+      "location": "Bengaluru, India",
+      "department": "Engineering",
+      "commitment": "Full-time"
+    },
+    "descriptionBody": "<p>Looking for a Backend Engineer with Python, Django, PostgreSQL experience.</p><li>Microservices architecture</li><li>AWS cloud deployment</li>"
+  },
+  {
+    "id": "xyz789-uvw012",
+    "text": "Data Engineering Intern",
+    "hostedUrl": "https://jobs.lever.co/meesho/xyz789-uvw012",
+    "createdAt": 1704758400000,
+    "updatedAt": 1704931200000,
+    "workplaceType": "on-site",
+    "categories": {
+      "location": "Bengaluru, India",
+      "department": "Data",
+      "commitment": "Internship"
+    },
+    "descriptionBody": "<p>Data Engineering internship. Work with Apache Spark, Python, SQL and ETL pipelines.</p>"
+  }
+]

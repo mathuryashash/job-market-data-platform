@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_postings
+    description: "Cleaned, validated postings from silver layer"
+    columns:
+      - name: key
+        tests:
+          - not_null
+          - unique
+      - name: title
+        tests:
+          - not_null
+      - name: source
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['greenhouse', 'lever', 'ashby']
+      - name: seniority
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['intern', 'new_grad', 'junior', 'mid', 'senior', 'manager', 'unknown']
+      - name: posted_at
+        tests:
+          - not_future_date: {}

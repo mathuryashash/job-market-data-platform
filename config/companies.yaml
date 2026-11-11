@@ -1,0 +1,121 @@
+# companies.yaml  — public ATS board slugs for the job-market-data-platform
+# Sources: Greenhouse boards-api.greenhouse.io, Lever api.lever.co, Ashby api.ashbyhq.com
+# Only slug + ats + display_name — no personal data, fit scores, or application state.
+
+companies:
+  # Greenhouse
+  - slug: razorpaysoftwareprivatelimited
+    ats: greenhouse
+    name: Razorpay
+  - slug: groww
+    ats: greenhouse
+    name: Groww
+  - slug: inmobi
+    ats: greenhouse
+    name: InMobi
+  - slug: rubrik
+    ats: greenhouse
+    name: Rubrik
+  - slug: databricks
+    ats: greenhouse
+    name: Databricks
+  - slug: anthropic
+    ats: greenhouse
+    name: Anthropic
+  - slug: canonical
+    ats: greenhouse
+    name: Canonical
+  - slug: togetherai
+    ats: greenhouse
+    name: Together AI
+  - slug: gitlab
+    ats: greenhouse
+    name: GitLab
+  - slug: grafanalabs
+    ats: greenhouse
+    name: Grafana Labs
+  - slug: elastic
+    ats: greenhouse
+    name: Elastic
+  - slug: stripe
+    ats: greenhouse
+    name: Stripe
+  - slug: devrev
+    ats: greenhouse
+    name: DevRev
+  - slug: truefoundry
+    ats: greenhouse
+    name: TrueFoundry
+  - slug: automatticcareers
+    ats: greenhouse
+    name: Automattic
+  - slug: datadog
+    ats: greenhouse
+    name: Datadog
+  - slug: dropbox
+    ats: greenhouse
+    name: Dropbox
+
+  # Ashby
+  - slug: sarvam
+    ats: ashby
+    name: Sarvam AI
+  - slug: composio
+    ats: ashby
+    name: Composio
+  - slug: atlan
+    ats: ashby
+    name: Atlan
+  - slug: openai
+    ats: ashby
+    name: OpenAI
+  - slug: cohere
+    ats: ashby
+    name: Cohere
+  - slug: replit
+    ats: ashby
+    name: Replit
+  - slug: elevenlabs
+    ats: ashby
+    name: ElevenLabs
+  - slug: perplexity
+    ats: ashby
+    name: Perplexity AI
+  - slug: signoz
+    ats: ashby
+    name: SigNoz
+  - slug: plane
+    ats: ashby
+    name: Plane
+  - slug: zapier
+    ats: ashby
+    name: Zapier
+  - slug: helpscout
+    ats: ashby
+    name: Help Scout
+  - slug: kit
+    ats: ashby
+    name: Kit (ConvertKit)
+
+  # Lever
+  - slug: cred
+    ats: lever
+    name: CRED
+  - slug: meesho
+    ats: lever
+    name: Meesho
+  - slug: zeta
+    ats: lever
+    name: Zeta
+  - slug: hevodata
+    ats: lever
+    name: Hevo Data
+  - slug: mindtickle
+    ats: lever
+    name: MindTickle
+  - slug: contentsquare
+    ats: lever
+    name: Contentsquare
+  - slug: kinsta
+    ats: lever
+    name: Kinsta

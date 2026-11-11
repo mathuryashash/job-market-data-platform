@@ -1,0 +1,26 @@
+# Core
+pyyaml>=6.0
+kafka-python>=2.0.2
+boto3>=1.34
+requests>=2.31
+
+# Spark
+pyspark>=3.5.0
+
+# dbt
+dbt-core>=1.7
+dbt-duckdb>=1.7
+
+# Dashboard
+streamlit>=1.30
+duckdb>=0.10
+
+# Testing
+pytest>=8.0
+pytest-timeout>=2.3
+
+# Linting
+ruff>=0.4
+
+# Airflow (optional, skip in CI if memory constrained)
+# apache-airflow>=2.9  # uncomment for full DAG testing

@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: dim_company
+    description: "One row per company with aggregated posting stats"
+    columns:
+      - name: company
+        tests:
+          - not_null
+      - name: total_postings
+        tests:
+          - not_null
+
+  - name: fct_postings_daily
+    description: "Daily posting counts aggregated by source/region/seniority"
+    columns:
+      - name: posting_date
+        tests:
+          - not_null
+      - name: postings_count
+        tests:
+          - not_null
+
+  - name: skill_demand_weekly
+    description: "Weekly skill demand from posting descriptions"
+    columns:
+      - name: skill
+        tests:
+          - not_null
+      - name: postings_count
+        tests:
+          - not_null
+
+  - name: entry_level_india_remote
+    description: "Entry-level postings in India or remote"
+    columns:
+      - name: key
+        tests:
+          - not_null
+          - unique
+
+  - name: time_to_close
+    description: "Posting lifecycle tracking across daily snapshots"
+    columns:
+      - name: key
+        tests:
+          - not_null
+          - unique

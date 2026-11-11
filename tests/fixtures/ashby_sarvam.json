@@ -1,0 +1,26 @@
+{
+  "jobPostings": [
+    {
+      "id": "sarvam-001",
+      "title": "Machine Learning Engineer",
+      "locationName": "Bengaluru, India",
+      "departmentName": "AI Research",
+      "employmentType": "FullTime",
+      "publishedDate": "2024-01-10",
+      "updatedAt": "2024-01-12T00:00:00.000Z",
+      "jobUrl": "https://jobs.ashbyhq.com/sarvam/sarvam-001",
+      "descriptionHtml": "<p>Join us to build LLM-based products. Python, PyTorch required. Hugging Face experience a plus.</p><p>You will work on data pipelines and ML training workflows.</p>"
+    },
+    {
+      "id": "sarvam-002",
+      "title": "Junior Software Engineer",
+      "locationName": "Remote - India",
+      "departmentName": "Platform",
+      "employmentType": "FullTime",
+      "publishedDate": "2024-01-08",
+      "updatedAt": "2024-01-10T00:00:00.000Z",
+      "jobUrl": "https://jobs.ashbyhq.com/sarvam/sarvam-002",
+      "descriptionHtml": "<p>Junior engineer for platform team. Python, FastAPI, Docker, Kubernetes skills needed.</p>"
+    }
+  ]
+}

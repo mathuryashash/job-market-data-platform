@@ -1,0 +1,10 @@
+job_market:
+  target: duckdb
+  outputs:
+    duckdb:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', 'job_market.duckdb') }}"
+      threads: 4
+      extensions:
+        - httpfs
+        - parquet

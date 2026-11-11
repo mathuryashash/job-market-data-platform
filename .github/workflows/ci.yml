@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install ruff pytest pytest-timeout pyyaml dbt-core dbt-duckdb duckdb kafka-python boto3
+
+      - name: Lint (ruff)
+        run: |
+          ruff check src/ tests/ scripts/ dashboard/ airflow/dags/
+
+      - name: Unit tests (no network, no Docker)
+        run: |
+          pytest tests/test_taxonomy.py tests/test_normalizers.py tests/test_extractors.py -v
+
+  dbt-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dbt + duckdb
+        run: pip install dbt-core dbt-duckdb duckdb pyyaml
+
+      - name: Copy dbt profiles
+        run: cp dbt/profiles.yml.example dbt/profiles.yml
+
+      - name: dbt seed + build + test (DuckDB fixture)
+        working-directory: dbt
+        run: |
+          dbt seed --profiles-dir . --target duckdb
+          dbt build --profiles-dir . --target duckdb
+          dbt test --profiles-dir . --target duckdb
+        env:
+          DUCKDB_PATH: job_market.duckdb
+
+  spark-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: temurin
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PySpark
+        run: pip install pyspark pytest pyyaml
+
+      - name: Spark transform tests (local mode)
+        run: |
+          pytest tests/test_spark_transform.py -v
+
+  dag-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Airflow (constrained)
+        run: |
+          pip install "apache-airflow==2.9.3" --constraint \
+            "https://raw.githubusercontent.com/apache/airflow/constraints-2.9.3/constraints-3.11.txt"
+          pip install pytest
+
+      - name: DAG integrity test
+        run: |
+          pytest tests/test_dag_integrity.py -v
+        env:
+          AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "sqlite:///:memory:"
+
+  actionlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: actionlint
+        uses: rhysd/actionlint@v1
