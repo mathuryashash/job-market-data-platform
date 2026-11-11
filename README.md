@@ -41,28 +41,31 @@ make dashboard
 make report
 ```
 
-**Real output from one run on this laptop (see VERIFY.md for full output):**
+**Real output from E2E run on this laptop (see VERIFY.md for full output):**
 
 ```
-Companies loaded: 38 (17 greenhouse, 7 lever, 14 ashby)
-Extracted: 1247 postings in 23.4s
-Bronze rows: 1247 | Silver rows: 1198 | Dedupe ratio: 3.9%
+Companies loaded: 37 (17 greenhouse, 7 lever, 13 ashby)
+Extracted: 5937 postings in 122.7s
+  Greenhouse: 4352 | Lever: 183 | Ashby: 1402
+Bronze rows: 5937 | Silver rows: 5937 | Dedupe ratio: 0.0%
 
 Top 10 skills:
-  Python                          312 postings
-  SQL                             198 postings
-  ...
+  Data Pipelines                  1720 postings
+  Go                              1655 postings
+  Machine Learning                1128 postings
+  Python                          1087 postings
+  Databricks                       945 postings
 ```
 
 ## Results
 
 | Stage         | Rows   | Notes                              |
-|---------------|--------|------------------------------------|
-| Bronze (raw)  | ~1200  | One snapshot, laptop, no Kafka     |
-| Silver        | ~1180  | After dedupe (3-5% ratio typical)  |
-| dbt mart      | varies | Fixture seed: 10 rows; live: ~1180 |
+|---------------|--------|------------------------------------
+| Bronze (raw)  | 5937   | One snapshot, laptop, python only |
+| Silver        | 5937   | After dedupe (0% on single day)   |
+| dbt mart      | ~5k    | Fixture seed: 10 rows; live: ~5k  |
 
-*Numbers from VERIFY.md. Single snapshot — first_seen = last_seen for all records. Run twice on different days to see SCD-style tracking.*
+*Numbers from VERIFY.md. Single-day snapshot — first_seen = last_seen for all records. Run twice on different calendar days to see SCD-style tracking.*
 
 ## Design Decisions
 

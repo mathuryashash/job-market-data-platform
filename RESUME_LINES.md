@@ -2,9 +2,9 @@
 
 ## Bullets (≤ 30 words each)
 
-- Built end-to-end job-market data pipeline: Kafka → MinIO → PySpark → dbt/DuckDB; extracted 4533 postings from 37 companies via public ATS APIs in 128s.
-- Implemented deterministic skill taxonomy (70+ regex patterns, 89 pytest cases); dbt models with 24/24 data-quality tests on fixture data using DuckDB httpfs.
-- Orchestrated daily Airflow DAG (extract → land → Spark → dbt → publish) with idempotent partitions, retries, and DAG-integrity tests via DagBag.
+- Built end-to-end job-market data pipeline: Kafka → MinIO → PySpark → dbt/DuckDB; extracted 5937 postings from 37 ATS boards (Greenhouse/Lever/Ashby) in 123s (fixed Ashby API bug).
+- Implemented deterministic skill taxonomy (70+ regex patterns, 90 pytest cases: +1 regression test for Ashby); dbt models with 24/24 data-quality tests on fixture data using DuckDB httpfs.
+- Orchestrated daily Airflow DAG (extract → land → Spark → dbt → publish) with idempotent partitions, retries, and DAG-integrity tests via DagBag; idempotent re-runs validated.
 
 ## Honest keyword list (only what the code actually uses and tests)
 
@@ -12,7 +12,7 @@
 
 **Languages**: Python 3.11
 
-**Testing**: pytest (89 unit tests), dbt tests (accepted_values, unique, not_null, custom not_future_date), Spark local mode tests
+**Testing**: pytest (90 unit tests, including +1 Ashby regression), dbt tests (accepted_values, unique, not_null, custom not_future_date), Spark local mode tests
 
 **DevOps/Infra**: Docker Compose, GitHub Actions CI, ruff
 
