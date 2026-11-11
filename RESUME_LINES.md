@@ -2,9 +2,9 @@
 
 ## Bullets (≤ 30 words each)
 
-- Built end-to-end job-market data pipeline: Kafka → MinIO → PySpark → dbt/DuckDB; extracted 5937 postings from 37 ATS boards (Greenhouse/Lever/Ashby) in 123s (fixed Ashby API bug).
+- Built a job-market data pipeline (Kafka, MinIO, PySpark, dbt/DuckDB); live extraction pulled 5937 postings from 37 ATS boards (Greenhouse/Lever/Ashby) in 123 s.
 - Implemented deterministic skill taxonomy (70+ regex patterns, 90 pytest cases: +1 regression test for Ashby); dbt models with 24/24 data-quality tests on fixture data using DuckDB httpfs.
-- Orchestrated daily Airflow DAG (extract → land → Spark → dbt → publish) with idempotent partitions, retries, and DAG-integrity tests via DagBag; idempotent re-runs validated.
+- (PENDING: the Airflow DAG and the full Kafka -> Spark -> dbt run have not been executed together yet. Add a bullet only after VERIFY.md shows that run.)
 
 ## Honest keyword list (only what the code actually uses and tests)
 
