@@ -102,3 +102,20 @@ class TestExtractSkills:
         assert "Python" in result
         assert "Apache Spark" in result
         assert "SQL" in result
+
+
+# Regression: the first live run counted "Go" in 1655 postings because the pattern was
+# case-insensitive and matched the English verb ("go to market", "Let's go").
+
+
+@pytest.mark.parametrize("text,expected", [
+    ("Experience in Go and Kubernetes", True),
+    ("Golang microservices", True),
+    ("We build services in Go.", True),
+    ("We go to market fast", False),
+    ("Let's go!", False),
+    ("Go to market strategy", False),
+    ("go-live support", False),
+])
+def test_go_language_not_english_verb(text, expected):
+    assert ("Go" in extract_skills(text)) is expected

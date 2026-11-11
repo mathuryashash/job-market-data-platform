@@ -24,7 +24,9 @@ _RAW: list[tuple[str, str, str]] = [
     ("Java", "language", r"\bjava\b(?!script)"),
     ("JavaScript", "language", r"\bjavascript\b|\bjs\b"),
     ("TypeScript", "language", r"\btypescript\b|\bts\b"),
-    ("Go", "language", r"\bgolang\b|\bgo\b"),
+    # "go" is an ordinary English word ("go to market", "go-live"), so match only the
+    # capitalised language name (case-sensitive via (?-i:...)) or "golang".
+    ("Go", "language", r"\bgolang\b|(?-i:\bGo\b)(?![- ]?(?:to|live|getter|ahead|beyond)\b)"),
     ("Rust", "language", r"\brust\b"),
     ("Scala", "language", r"\bscala\b"),
     ("C++", "language", r"\bc\+\+\b|\bcpp\b"),

@@ -50,6 +50,7 @@ Extracted: 5937 postings in 122.7s
 Bronze rows: 5937 | Silver rows: 5937 | Dedupe ratio: 0.0%
 
 Top 10 skills:
+  (skill counts below are from before the Go-pattern fix, which over-counted Go by matching the English verb; re-run `make e2e` for corrected counts)
   Data Pipelines                  1720 postings
   Go                              1655 postings
   Machine Learning                1128 postings

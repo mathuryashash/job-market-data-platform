@@ -68,6 +68,7 @@ Companies loaded: 37 (17 greenhouse, 7 lever, 13 ashby)
 
 [4/4] Skills summary (top 10 from mart)...
   Top 10 skills by posting count:
+  (skill counts below are from before the Go-pattern fix, which over-counted Go by matching the English verb; re-run `make e2e` for corrected counts)
     Data Pipelines                 1720 postings
     Go                             1655 postings
     Machine Learning               1128 postings
@@ -105,6 +106,7 @@ Companies loaded: 37 (17 greenhouse, 7 lever, 13 ashby)
 
 [4/4] Skills summary (top 10 from mart)...
   Top 10 skills by posting count:
+  (skill counts below are from before the Go-pattern fix, which over-counted Go by matching the English verb; re-run `make e2e` for corrected counts)
     Data Pipelines                 1720 postings
     Go                             1655 postings
     Machine Learning               1128 postings
