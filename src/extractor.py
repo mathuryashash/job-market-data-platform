@@ -163,7 +163,7 @@ def _fetch_ashby(slug: str, company_name: str) -> list[Posting]:
         logger.error("ashby %s: %s", slug, e)
         return []
     postings = []
-    for job in data.get("jobPostings", []):
+    for job in data.get("jobs", []):
         locs = job.get("locationName", "") or ""
         loc_info = normalize_location(locs)
         desc = (job.get("descriptionHtml", "") or "")

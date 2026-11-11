@@ -115,11 +115,22 @@ class TestAshbyExtractor:
         assert p.source == "ashby"
         assert p.company == "Sarvam AI"
 
-    def test_handles_missing_jobPostings_key(self):
+    def test_handles_missing_jobs_key(self):
         from src.extractor import _fetch_ashby
         with patch("src.extractor._http_get", return_value={}):
             postings = _fetch_ashby("empty", "Empty")
         assert postings == []
+
+    def test_parses_real_ashby_response(self):
+        """Regression test: Ashby API returns 'jobs' key, not 'jobPostings'."""
+        from src.extractor import _fetch_ashby
+        fixture = _load_fixture("ashby_sarvam.json")
+        with patch("src.extractor._http_get", return_value=fixture):
+            postings = _fetch_ashby("sarvam", "Sarvam AI")
+        # Fixture has 48 jobs; verify we extract them all
+        assert len(postings) == 48, f"Expected 48 postings, got {len(postings)}"
+        for p in postings:
+            assert p.key.startswith("ashby:Sarvam AI:"), f"Bad key: {p.key}"
 
 
 # ---------------------------------------------------------------------------
