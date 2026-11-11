@@ -6,9 +6,19 @@ Run as a plain pytest (no Airflow running).
 from __future__ import annotations
 
 import os
+import sys
 from pathlib import Path
 
 import pytest
+
+# Airflow only supports POSIX systems; skip these tests on Windows.
+# The CI workflow runs them on ubuntu-latest.
+if sys.platform == "win32":
+    pytest.skip(
+        "Airflow does not support Windows (apache/airflow#10388). "
+        "DAG integrity tests run in CI on ubuntu-latest.",
+        allow_module_level=True,
+    )
 
 # Point Airflow at the DAGs folder
 DAGS_DIR = str(Path(__file__).parent.parent / "airflow" / "dags")

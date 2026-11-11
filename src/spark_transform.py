@@ -64,7 +64,7 @@ def transform(
         return {"input_rows": 0, "output_rows": 0, "dedupe_ratio": 0.0}
 
     # Dedupe: keep latest by key (source:company:external_id)
-    w = Window.partitionBy("key").orderBy(F.coalesce("updated_at", "posted_at", F._current_date()).desc())
+    w = Window.partitionBy("key").orderBy(F.coalesce("updated_at", "posted_at", F.current_date().cast("string")).desc())
     df = df.withColumn("_rank", F.row_number().over(w)).filter(F.col("_rank") == 1).drop("_rank")
 
     # Add run metadata

@@ -2,14 +2,27 @@
 Spark transform tests using PySpark in local mode.
 No cluster needed; runs in CI with Java installed.
 Uses in-memory data (not MinIO) so it works without Docker.
+
+NOTE: On Windows, PySpark requires winutils.exe (HADOOP_HOME) for file operations.
+These tests are skipped on Windows and run in CI on ubuntu-latest.
 """
 
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import pytest
+
+# PySpark on Windows requires winutils.exe for local filesystem writes (Parquet).
+# Skip here; CI runs these on ubuntu-latest which has no such restriction.
+if sys.platform == "win32":
+    pytest.skip(
+        "PySpark on Windows requires winutils.exe (HADOOP_HOME). "
+        "Spark tests run in CI on ubuntu-latest.",
+        allow_module_level=True,
+    )
 
 # Skip all tests if pyspark is not installed
 pyspark = pytest.importorskip("pyspark", reason="pyspark not installed")
