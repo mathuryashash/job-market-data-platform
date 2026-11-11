@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import os
 import sys
+import tempfile
 from pathlib import Path
 
 import pytest
@@ -30,7 +31,9 @@ def dagbag():
     # Suppress Airflow's first-run setup noise
     os.environ.setdefault("AIRFLOW__CORE__UNIT_TEST_MODE", "True")
     os.environ.setdefault("AIRFLOW__CORE__LOAD_EXAMPLES", "False")
-    os.environ.setdefault("AIRFLOW__DATABASE__SQL_ALCHEMY_CONN", "sqlite:///:memory:")
+    # Airflow refuses relative sqlite paths, and "sqlite:///:memory:" counts as relative.
+    db_path = Path(tempfile.gettempdir()) / "jmdp_airflow_test.db"
+    os.environ.setdefault("AIRFLOW__DATABASE__SQL_ALCHEMY_CONN", f"sqlite:///{db_path.as_posix()}")
 
     try:
         from airflow.models import DagBag

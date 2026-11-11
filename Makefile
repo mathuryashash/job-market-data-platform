@@ -37,7 +37,10 @@ test-integration: ## Run Kafka integration tests (needs Docker Compose up)
 dbt-seed: ## Load fixture seed data into DuckDB
 	cd $(DBT_DIR) && DUCKDB_PATH=$(DUCKDB_PATH) dbt seed --profiles-dir . --target duckdb
 
-dbt-build: dbt-seed ## Build dbt models
+dbt-build: dbt-seed ## Build dbt models on the seed fixture (no MinIO needed)
+	cd $(DBT_DIR) && DUCKDB_PATH=$(DUCKDB_PATH) dbt build --profiles-dir . --target duckdb --vars '{use_fixture: true}' --exclude "source:*"
+
+dbt-build-silver: ## Build dbt models on real silver Parquet (needs `make up` + a pipeline run)
 	cd $(DBT_DIR) && DUCKDB_PATH=$(DUCKDB_PATH) dbt build --profiles-dir . --target duckdb
 
 dbt-test: ## Run dbt tests

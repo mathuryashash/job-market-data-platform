@@ -10,9 +10,9 @@ jobs:
   lint-and-unit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -32,9 +32,9 @@ jobs:
   dbt-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -47,23 +47,24 @@ jobs:
       - name: dbt seed + build + test (DuckDB fixture)
         working-directory: dbt
         run: |
+          # CI has no MinIO/silver Parquet, so build on the seed fixture and skip the
+          # source tests (they need the real silver table). `dbt build` already runs model tests.
           dbt seed --profiles-dir . --target duckdb
-          dbt build --profiles-dir . --target duckdb
-          dbt test --profiles-dir . --target duckdb
+          dbt build --profiles-dir . --target duckdb --vars '{use_fixture: true}' --exclude "source:*"
         env:
           DUCKDB_PATH: job_market.duckdb
 
   spark-tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v6
         with:
           java-version: "17"
           distribution: temurin
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -77,9 +78,9 @@ jobs:
   dag-integrity:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
 
@@ -94,11 +95,13 @@ jobs:
           pytest tests/test_dag_integrity.py -v
         env:
           AIRFLOW__CORE__LOAD_EXAMPLES: "False"
-          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "sqlite:///:memory:"
+          AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: "sqlite:////tmp/airflow_ci.db"
 
   actionlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: actionlint
-        uses: rhysd/actionlint@v1
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.12/scripts/download-actionlint.bash) 1.7.12
+          ./actionlint -color
