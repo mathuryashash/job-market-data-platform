@@ -73,7 +73,7 @@ Top 10 skills:
 See [docs/DESIGN.md](docs/DESIGN.md) for full reasoning. Short version:
 
 - **Kafka instead of direct write**: keeps extract and land decoupled; lets replay on schema changes
-- **MinIO not HDFS**: S3-compatible object store, simpler ops, same API as AWS S3
+- **MinIO not HDFS**: S3-compatible object store, simpler ops, same API as AWS S3. Runs the `pgsty/silo` image, a maintained MinIO fork, because `minio/minio` was removed from Docker Hub in 2026
 - **DuckDB not Postgres for dbt**: reads Parquet directly via httpfs; no warehouse needed for this scale
 - **Deterministic skill taxonomy**: regex over ML — reproducible, testable, no inference cost
 - **One daily DAG**: batch is fine at this scale; stream processing (Flink) would be over-engineering

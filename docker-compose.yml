@@ -25,9 +25,9 @@ services:
       retries: 10
       start_period: 30s
 
-  # --- MinIO (S3-compatible object store) ---
+  # --- MinIO-compatible object store (pgsty/silo: maintained MinIO fork; minio/minio left Docker Hub in 2026) ---
   jmdp-minio:
-    image: minio/minio:latest
+    image: pgsty/silo:RELEASE.2026-11-12T00-00-00Z
     container_name: jmdp-minio
     ports:
       - "19000:9000"
@@ -46,7 +46,7 @@ services:
 
   # --- MinIO bucket init ---
   jmdp-minio-init:
-    image: minio/minio:latest
+    image: pgsty/silo:RELEASE.2026-11-12T00-00-00Z
     container_name: jmdp-minio-init
     depends_on:
       jmdp-minio:
